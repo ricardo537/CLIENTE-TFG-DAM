@@ -1,0 +1,82 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    font-family: 'Montserrat', sans-serif;
+    min-height: 100vh;
+    padding: 30px;
+    background: linear-gradient(to right, blue, red);
+    overflow: hidden;
+  }
+  
+  h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin: 2rem 0;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+    padding-bottom: 15px;
+  }
+  
+  .buttons-container {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    width: 100%;
+    max-width: 450px;
+    margin: 2rem 0;
+  }
+  
+  .registerButton, .loginButton {
+    padding: 14px 20px;
+    border: none;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex: 1;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: greenyellow;
+  }
+  
+  .registerButton:hover, .loginButton:hover {
+    transform: translateY(-2px);
+  }
+  
+  .description-container {
+    background-color: rgb(255, 255, 255);
+    border-radius: 15px;
+    padding: 25px;
+    width: 100%;
+    max-width: 500px;
+    margin-top: 2rem;
+  }
+  
+  .description-container p {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+  
+  .description-container::after {
+    content: "Bolas es una aplicación de eventos deportivos que te permite encontrar y unirte a partidos, torneos y eventos deportivos cerca de ti. Organiza tus propios eventos o únete a los existentes para disfrutar de tu deporte favorito.";
+    display: block;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #555;
+    text-align: center;
+  }

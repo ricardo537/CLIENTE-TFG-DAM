@@ -1,0 +1,27 @@
+<body>
+    <div class="form-container">
+        <h2>Registrar usuario</h2>
+        <button class="change-form" [routerLink]="['/bolas/auth/login']">Iniciar sesión</button>
+        <form [formGroup]="registerForm" (ngSubmit)="register()">
+            <div class="credential">
+                <label>Email: </label>
+                <input type="text" formControlName="email">
+            </div>
+            <div class="credential">
+                <label>Contraseña: </label>
+                <input type="password" formControlName="password">
+            </div>
+            <div class="credential">
+                <label>Confirmar contraseña: </label>
+                <input type="password" formControlName="password_confirm">
+            </div>
+            <div class="credential">
+                <label>Nombre y apellidos: </label>
+                <input type="text" formControlName="name">
+            </div>
+            <p [textContent]="this.message" class="error-message"></p>
+            <p [textContent]="this.successMessage" class="success-message"></p>
+            <button class="send" type="submit">Registrar</button>
+        </form>
+    </div>
+</body>

@@ -1,0 +1,18 @@
+<body>
+    <div class="form-container">
+        <h2>Iniciar sesión</h2>
+        <button class="change-form" [routerLink]="['/bolas/auth/register']">Registrar usuario</button>
+        <form [formGroup]="loginForm" (ngSubmit)="login()">
+            <div class="credential">
+                <label>Email: </label>
+                <input type="text" formControlName="email">
+            </div>
+            <div class="credential">
+                <label>Contraseña: </label>
+                <input type="password" formControlName="password">
+            </div>
+            <p [textContent]="this.message"></p>
+            <button class="send" type="submit">Iniciar sesión</button>
+        </form>
+    </div>
+</body>
