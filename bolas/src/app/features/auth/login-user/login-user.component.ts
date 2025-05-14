@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { LoginDTO } from '../../../dto/LoginDTO';
 import { AuthService } from '../auth.service';
 import { HttpClientModule } from '@angular/common/http';
+import { LoginDTO } from '@dto/loginDTO';
 
 @Component({
   selector: 'app-login-user',

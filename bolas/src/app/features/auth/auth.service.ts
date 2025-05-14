@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { LoginDTO } from '../../dto/LoginDTO';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { RegisterDTO } from '../../dto/registerDTO';
+import { RegisterDTO } from '@dto/registerDTO';
+import { LoginDTO } from '@dto/loginDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +28,6 @@ export class AuthService {
       "name": register.name
     };
     console.log(body);
-    return this.http.post<string>(this.apiRegisterURL, body);
+    return this.http.post<string>(this.apiRegisterURL, body, { responseType: 'text' as 'json' });
   }
 }

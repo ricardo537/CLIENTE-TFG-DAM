@@ -1,4 +1,5 @@
-import { Validator } from "../shared/utils/Validator";
+import { Validator } from "app/shared/utils/validator";
+
 
 export class LoginDTO {
     email: string;

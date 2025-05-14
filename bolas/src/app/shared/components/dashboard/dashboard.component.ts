@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
-  selector: 'app-presentation',
+  selector: 'app-dashboard',
   imports: [RouterOutlet, RouterLink],
-  templateUrl: './presentation.component.html',
-  styleUrl: './presentation.component.css'
+  templateUrl: './dashboard.component.html',
+  styleUrl: './dashboard.component.css'
 })
-export class PresentationComponent {
+export class DashboardComponent {
 
 }

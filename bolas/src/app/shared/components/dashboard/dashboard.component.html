@@ -1,0 +1,14 @@
+<body>
+    <div class="general-container">
+        <div class="menu">
+            <button [routerLink]="['/bolas/dashboard/']">Home</button>
+            <button [routerLink]="['bolas/dashboard/']">Calendario</button>
+            <button [routerLink]="['bolas/dashboard/']">Crear evento</button>
+            <button [routerLink]="['bolas/dashboard/']">Social</button>
+            <button [routerLink]="['bolas/dashboard/profile']">Perfil</button>
+        </div>
+        <div class="option">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</body>

@@ -3,8 +3,8 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../auth.service';
-import { RegisterDTO } from '../../../dto/registerDTO';
 import { CommonModule } from '@angular/common';
+import { RegisterDTO } from '@dto/registerDTO';
 
 @Component({
   selector: 'app-register-user',
@@ -35,12 +35,14 @@ export class RegisterUserComponent {
     } else {
       this.authService.register(register).subscribe({
         next: (response: string) => {
-          this.message = "El usuario con ese email ya está registrado, por favor escoja otro email.";
+          this.message = "";
+          this.successMessage = "El email se ha registrado con éxito.";
+          setTimeout(() => {
+            this.router.navigate(['/bolas/auth/login']);
+          }, 1500);
         },
         error: (error) => {
-          this.successMessage = "El email se ha registrado con éxito.";
-          setTimeout(() => {}, 1000);
-          this.router.navigate(['/bolas/auth/login']);
+          this.message = "El usuario con ese email ya está registrado, por favor escoja otro email.";
         }
       })
     }
