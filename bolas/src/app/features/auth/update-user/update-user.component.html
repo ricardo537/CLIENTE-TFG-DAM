@@ -1,0 +1,20 @@
+<form [formGroup]="updateForm" (ngSubmit)="update()">
+    <h2>Actualizar datos</h2>
+    <p>Escribe solo los datos que quieras modifcar, el resto déjalo en blanco</p>
+    <label>Nuevo email</label>
+    <input type="text" formControlName="email">
+    <label>Nueva contraseña</label>
+    <input type="password" formControlName="password">
+    <label>Confirmación de la nueva cotraseña</label>
+    <input type="password" formControlName="password_confirm">
+    <label>Nuevo nombre</label>
+    <input type="text" formControlName="name">
+    <label>Nueva descripción</label>
+    <input type="text" formControlName="description">
+    <br>
+    <div *ngIf="errorMessage !== '' || goodMessage !== ''">
+        <p class="errorMessage" [textContent]="errorMessage"></p>
+        <p class="goodMessage" [textContent]="goodMessage"></p>
+    </div>
+    <button type="submit">Actualizar</button>
+</form>

@@ -31,7 +31,7 @@ export class LoginUserComponent {
     } else {
       this.authService.login(login).subscribe({
         next: (response : LoginDTO) => {
-          sessionStorage.setItem("token", JSON.stringify(response));
+          LoginDTO.setSession(response);
           this.router.navigate(['/bolas/dashboard']);
         },
         error: (error) => {

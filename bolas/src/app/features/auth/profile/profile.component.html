@@ -1,12 +1,13 @@
 <div class="profile-container">
     <div class="player-card">
         <div class="options">
-            <button>Editar perfil</button>
+            <button (click)="changeVisibilityUpdateForm()">Editar perfil</button>
             <button>Borrar perfil</button>
             <button (click)="logout()">Salir de la sesión</button>
         </div>
         <div class="photo">
-            <img src="C:\Ricardo\Datos personales\Indra\Imagen_tipo_carne.jpg">
+            <img src="C:\Ricardo\Datos personales\Indra\Imagen_tipo_carne.jpg" (click)="openSelector()">
+            <input type="file" #inputFile (change)="fileSelected($event)" accept="image/*" hidden />
             <div class="relations">
                 <a href=""><p>267 seguidores</p></a>
                 <a href=""><p>735 seguidos</p></a>
@@ -22,5 +23,13 @@
     </div>
     <div class="event-stats">
         
+    </div>
+    <div class="updated-form" *ngIf="updateForm">
+        <div class="close">
+            <button (click)="changeVisibilityUpdateForm()">X</button>
+        </div>
+        <div class="form">
+            <app-update-user></app-update-user>
+        </div>
     </div>
 </div>

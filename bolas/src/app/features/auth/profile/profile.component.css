@@ -45,11 +45,49 @@
     border-radius: 50%;
     border: 2px solid #dbdbdb;
     margin-right: 30px;
+    cursor: pointer;
+    transition: filter 0.3s ease;
+}
+.photo img:hover {
+    filter: brightness(60%);
 }
 
 .user-data {
     text-align: center;
     border-bottom: 1px solid #dbdbdb;
+}
+
+.updated-form {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    z-index: 1000;
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    background-color: #fff;
+}
+
+.close {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+    justify-content: right;
+    height: fit-content;
+}
+
+.close button {
+    color: red;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: larger;
 }
 
 @media (max-width: 768px) {
