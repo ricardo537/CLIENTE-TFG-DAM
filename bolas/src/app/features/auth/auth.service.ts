@@ -4,6 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { RegisterDTO } from '@dto/registerDTO';
 import { LoginDTO } from '@dto/loginDTO';
 import { UpdateDTO } from '@dto/updateDTO';
+import { IdDTO } from '@dto/idDTO';
+import { ProfileDTO } from '@dto/profileDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +14,8 @@ export class AuthService {
   private apiRegisterURL = "http://localhost:8080/bolas/api/user/register";
   private apiLoginURL = "http://localhost:8080/bolas/api/user/login";
   private apiUpdateURL = "http://localhost:8080/bolas/api/user/update";
+  private apiGetProfileURL = "http://localhost:8080/bolas/api/user/getProfile";
+  private apiGetMyIdURL = "http://localhost:8080/bolas/api/user/getMyId";
 
   constructor(private http: HttpClient) { }
 
@@ -32,7 +36,7 @@ export class AuthService {
     return this.http.post<string>(this.apiRegisterURL, body, { responseType: 'text' as 'json' });
   }
 
-  public update(update:UpdateDTO): Observable<LoginDTO> {
+  public update(update: UpdateDTO): Observable<LoginDTO> {
     const session = LoginDTO.getSession();
     const body = {
       "email": update.email,
@@ -45,5 +49,21 @@ export class AuthService {
       }
     }
     return this.http.post<LoginDTO>(this.apiUpdateURL, body);
+  }
+
+  public getMyId(): Observable<IdDTO> {
+    const session = LoginDTO.getSession();
+    const body = {
+      "email": session.email,
+      "password": session.password
+    };
+    return this.http.post<IdDTO>(this.apiGetMyIdURL, body);
+  }
+
+  public getProfile(id: IdDTO): Observable<ProfileDTO> {
+    const body = {
+      "id": id.id
+    };
+    return this.http.post<ProfileDTO>(this.apiGetProfileURL, body);
   }
 }

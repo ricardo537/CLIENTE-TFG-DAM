@@ -6,16 +6,16 @@
             <button (click)="logout()">Salir de la sesión</button>
         </div>
         <div class="photo">
-            <img src="C:\Ricardo\Datos personales\Indra\Imagen_tipo_carne.jpg" (click)="openSelector()">
+            <img [src]="profile.img" (click)="openSelector()">
             <input type="file" #inputFile (change)="fileSelected($event)" accept="image/*" hidden />
             <div class="relations">
-                <a href=""><p>267 seguidores</p></a>
-                <a href=""><p>735 seguidos</p></a>
+                <a href=""><p>{{ profile.followers }} seguidores</p></a>
+                <a href=""><p>{{ profile.follows }} seguidos</p></a>
             </div>
         </div>
         <div class="user-data">
-            <h2>John Doe</h2>
-            <p>I prefer the volleyball and basketball, but futbol I had play when I was 13 years old.</p>
+            <h2 [textContent]="profile.name"></h2>
+            <p [textContent]="profile.description"></p>
         </div>
         <div class="sports-stats">
 
