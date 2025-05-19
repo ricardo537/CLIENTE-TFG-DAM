@@ -50,7 +50,7 @@
     color: #333;
   }
   
-  .credential input {
+  .credential input, .credential select {
     padding: 10px 15px;
     border-radius: 8px;
     border: 1px solid #ccc;

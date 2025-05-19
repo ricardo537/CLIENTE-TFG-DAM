@@ -16,6 +16,7 @@ export class AuthService {
   private apiUpdateURL = "http://localhost:8080/bolas/api/user/update";
   private apiGetProfileURL = "http://localhost:8080/bolas/api/user/getProfile";
   private apiGetMyIdURL = "http://localhost:8080/bolas/api/user/getMyId";
+  private apiDeleteURL = "http://localhost:8080/bolas/api/user/delete";
 
   constructor(private http: HttpClient) { }
 
@@ -31,7 +32,8 @@ export class AuthService {
     const body = {
       "email": register.email,
       "password": register.password,
-      "name": register.name
+      "name": register.name,
+      "gender": register.gender
     };
     return this.http.post<string>(this.apiRegisterURL, body, { responseType: 'text' as 'json' });
   }
@@ -49,6 +51,15 @@ export class AuthService {
       }
     }
     return this.http.post<LoginDTO>(this.apiUpdateURL, body);
+  }
+
+  public delete(): Observable<string> {
+    const session = LoginDTO.getSession();
+    const body = {
+      "email": session.email,
+      "password": session.password
+    };
+    return this.http.post<string>(this.apiDeleteURL, body, { responseType: 'text' as 'json' })
   }
 
   public getMyId(): Observable<IdDTO> {

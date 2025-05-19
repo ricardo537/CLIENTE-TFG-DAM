@@ -6,13 +6,15 @@ export class UpdateDTO {
     confirm_password: string;
     name: string;
     description: string;
+    gender: string;
 
-    constructor (email:string, password:string, confirmPassword:string, name:string, description:string) {
+    constructor (email:string, password:string, confirmPassword:string, name:string, description:string, gender:string) {
         this.email = email;
         this.password = password;
         this.name = name;
         this.confirm_password = confirmPassword;
         this.description = description;
+        this.gender = gender;
     }
 
     public static fromJSON (json:any): UpdateDTO|string {
@@ -20,7 +22,7 @@ export class UpdateDTO {
             if (json.email == "" || Validator.emailComprobation(json.email)) {
                 const message = Validator.passwordComprobation(json.password);
                 if (message == "" || json.password == "") {
-                    return new UpdateDTO(json.email, json.password, json.password_confirm, json.name, json.description);
+                    return new UpdateDTO(json.email, json.password, json.password_confirm, json.name, json.description, json.gender);
                 } else {
                     return message;
                 }

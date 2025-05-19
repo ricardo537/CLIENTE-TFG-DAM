@@ -24,7 +24,8 @@ export class UpdateUserComponent {
       password: ['', []],
       password_confirm: ['', []],
       name: ['', []],
-      description: ['', []]
+      description: ['', []],
+      gender: ['', []]
     });
   }
 

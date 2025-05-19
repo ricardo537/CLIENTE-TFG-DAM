@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, NgZone, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { UpdateUserComponent } from "../update-user/update-user.component";
 import { CommonModule } from '@angular/common';
@@ -19,10 +19,11 @@ import { IdDTO } from '@dto/idDTO';
 export class ProfileComponent {
   public updateForm: boolean = false;
   public updateImg: boolean = false;
+  public wantToDelete: boolean = false;
   @ViewChild('inputFile') inputFile!: ElementRef<HTMLInputElement>;
   public profile: ProfileDTO = ProfileDTO.getVoid();
 
-  constructor (private router: Router, private mediaService: MediaService, private authService: AuthService) {
+  constructor (private router: Router, private mediaService: MediaService, private authService: AuthService, private zone: NgZone) {
     this.authService.getMyId().subscribe({
       next: (response: IdDTO) => {
         console.log(response);
@@ -56,16 +57,37 @@ export class ProfileComponent {
     }
   }
 
+  public changeVisibilityConfirmButtons() {
+    this.updateForm = false;
+    if (this.wantToDelete) {
+      this.wantToDelete = false;
+    } else {
+      this.wantToDelete = true;
+    }
+  }
+
   public logout (): void {
     sessionStorage.removeItem('token');
     this.router.navigate(["/bolas/auth/login"]);
   }
 
   public changeVisibilityUpdateForm (): void {
+    this.wantToDelete = false;
     if (this.updateForm) {
       this.updateForm = false;
     } else {
       this.updateForm = true;
     }
+  }
+
+  public deleteAccount(): void {
+    this.authService.delete().subscribe({
+      next: (response: string) => {
+        console.log(response);
+        this.zone.run(() => {
+          this.logout();
+        });
+      }
+    })
   }
 }

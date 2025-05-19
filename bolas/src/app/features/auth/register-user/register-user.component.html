@@ -19,6 +19,13 @@
                 <label>Nombre y apellidos: </label>
                 <input type="text" formControlName="name">
             </div>
+            <div class="credential">
+                <label>Sexo biológico: </label>
+                <select formControlName="gender">
+                    <option value="masc" selected>Masculino</option>
+                    <option value="fem">Femenino</option>
+                </select>
+            </div>
             <p [textContent]="this.message" class="error-message"></p>
             <p [textContent]="this.successMessage" class="success-message"></p>
             <button class="send" type="submit">Registrar</button>

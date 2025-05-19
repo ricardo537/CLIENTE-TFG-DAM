@@ -5,12 +5,14 @@ export class RegisterDTO {
     password: string;
     confirm_password: string;
     name: string;
+    gender: string;
 
-    constructor (email:string, password:string, confirmPassword:string, name:string) {
+    constructor (email:string, password:string, confirmPassword:string, name:string, gender:string) {
         this.email = email;
         this.password = password;
         this.name = name;
         this.confirm_password = confirmPassword;
+        this.gender = gender;
     }
 
     public static fromJSON (json:any): RegisterDTO|string {
@@ -18,7 +20,7 @@ export class RegisterDTO {
             if (Validator.emailComprobation(json.email)) {
                 const message = Validator.passwordComprobation(json.password);
                 if (message == "") {
-                    return new RegisterDTO(json.email, json.password, json.password_confirm, json.name);
+                    return new RegisterDTO(json.email, json.password, json.password_confirm, json.name, json.gender);
                 } else {
                     return message;
                 }

@@ -2,7 +2,7 @@
     <div class="player-card">
         <div class="options">
             <button (click)="changeVisibilityUpdateForm()">Editar perfil</button>
-            <button>Borrar perfil</button>
+            <button (click)="changeVisibilityConfirmButtons()">Borrar perfil</button>
             <button (click)="logout()">Salir de la sesión</button>
         </div>
         <div class="photo">
@@ -30,6 +30,13 @@
         </div>
         <div class="form">
             <app-update-user></app-update-user>
+        </div>
+    </div>
+    <div class="deleteConfirm" *ngIf="wantToDelete">
+        <h2>¿Estás seguro de que quieres borrar tu cuenta?</h2>
+        <div>
+            <button class="confirm" (click)="deleteAccount()">Confirmar</button>
+            <button class="cancel" (click)="changeVisibilityConfirmButtons()">Cancelar</button>
         </div>
     </div>
 </div>

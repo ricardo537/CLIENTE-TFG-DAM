@@ -11,6 +11,11 @@
     <input type="text" formControlName="name">
     <label>Nueva descripción</label>
     <input type="text" formControlName="description">
+    <label>Sexo biológico: </label>
+    <select formControlName="gender">
+        <option value="masc" selected>Masculino</option>
+        <option value="fem">Femenino</option>
+    </select>
     <br>
     <div *ngIf="errorMessage !== '' || goodMessage !== ''">
         <p class="errorMessage" [textContent]="errorMessage"></p>

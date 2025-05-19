@@ -90,6 +90,51 @@
     font-size: larger;
 }
 
+.deleteConfirm {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    z-index: 1000;
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    background-color: #fff;
+    align-items: center;
+    align-content: center;
+}
+
+.deleteConfirm h2 {
+    text-align: center;
+}
+
+.deleteConfirm div button {
+    margin: 2px;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+.cancel {
+    background-color: greenyellow;
+}
+
+.confirm {
+    background-color: red;
+}
+
 @media (max-width: 768px) {
     .photo img {
         width: 80px;
