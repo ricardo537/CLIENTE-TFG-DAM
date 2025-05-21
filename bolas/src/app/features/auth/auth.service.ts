@@ -45,11 +45,13 @@ export class AuthService {
       "password": update.password,
       "name": update.name,
       "description": update.description,
+      "gender": update.gender,
       "session": {
         "email": session.email,
         "password": session.password
       }
     }
+    
     return this.http.post<LoginDTO>(this.apiUpdateURL, body);
   }
 
