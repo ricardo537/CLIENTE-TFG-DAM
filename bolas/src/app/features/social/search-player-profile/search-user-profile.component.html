@@ -1,1 +1,16 @@
-<p>search-player-profile works!</p>
+<div class="container">
+    <div class="option">
+        <button [routerLink]="['/bolas/dashboard/social/groups']">Mis grupos</button>
+    </div>
+    <br>
+    <input [formControl]="searchControl" placeholder="Buscar..." />
+    <br>
+    <div class="user-container">
+        <div *ngFor="let user of users" class="user-card">
+            <button>
+                <img [src]="user.img">
+                <h2 [textContent]="user.name"></h2>
+            </button>
+        </div>
+    </div>
+</div>
