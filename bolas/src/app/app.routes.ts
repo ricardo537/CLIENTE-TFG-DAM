@@ -6,6 +6,8 @@ import { PresentationComponent } from './shared/components/presentation/presenta
 import { OutOfSessionGuard } from './core/guards/out-of-session.guard';
 import { authSessionGuard } from './core/guards/auth-session.guard';
 import { ProfileComponent } from '@features/auth/profile/profile.component';
+import { EventCreationFormComponent } from '@features/event-creation/event-creation-form/event-creation-form.component';
+import { EventCreationHistoryComponent } from '@features/event-creation/event-creation-history/event-creation-history.component';
 
 export const routes: Routes = [
     { path: 'bolas', children: [
@@ -18,6 +20,12 @@ export const routes: Routes = [
         ]},
         { path: 'dashboard', component: DashboardComponent, title: "Inicio", canActivate: [authSessionGuard], children: [
             { path: 'profile', component: ProfileComponent, title: "Perfil" },
+            { path: 'event-creation', children: [
+                { path: 'event-creation-form', component: EventCreationFormComponent, title: 'Crear un evento' },
+                { path: 'event-cration-history', component: EventCreationHistoryComponent, title: 'Historial de eventos creados' },
+                { path: '', redirectTo: 'event-creation-form', pathMatch: 'full' },
+                { path: '**', redirectTo: 'event-creation-form', pathMatch: 'full' }
+            ]},
             //Hay que cambiarlo por inicio/home
             { path: '', redirectTo: 'profile', pathMatch: 'full' },
             { path: '**', redirectTo: 'profile', pathMatch: 'full' }

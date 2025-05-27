@@ -1,0 +1,88 @@
+<div class="container">
+  <div class="option">
+    <button [routerLink]="['/bolas/dashboard/event-creation/event-cration-history']">Ver mis eventos creados</button>
+  </div>
+  <br>
+  <form [formGroup]="publishForm" (ngSubmit)="publish()">
+    <h2>Crea tu evento</h2>
+    <div class="data">
+      <label>Nombre del evento</label>
+      <input type="text" formControlName="name">
+    </div>
+    <div class="data">
+      <label>Descripción</label>
+      <input type="text" formControlName="description">
+    </div>
+    <div class="data">
+      <label>Dirección</label>
+      <input type="text" formControlName="address">
+    </div>
+    <div class="data">
+      <label>Fecha y hora de inicio</label>
+      <input type="datetime-local" formControlName="startDate">
+    </div>
+    <div class="data">
+      <label>Fecha y hora de fin</label>
+      <input type="datetime-local" formControlName="endDate">
+    </div>
+    <div class="data">
+      <label>Tipo de evento</label>
+      <select formControlName="type">
+        <option value="torneo">Torneo</option>
+        <option value="amistoso">Amistoso</option>
+        <option value="liga">Liga</option>
+        <option value="triangular">Triangular</option>
+        <option value="entrenamiento">Entrenamiento</option>
+      </select>
+    </div>
+    <div class="data">
+      <label>Deporte</label>
+      <select formControlName="sport">
+        <option value="voleibol">Voleibol</option>
+        <option value="tenis">Tenis</option>
+        <option value="futbol">Fútbol</option>
+        <option value="baloncesto">Baloncesto</option>
+      </select>
+    </div>
+    <div class="data">
+      <label>Mínimo de participantes</label>
+      <input type="number" formControlName="minParticipants" min="1" step="1">
+    </div>
+    <div class="data">
+      <label>Máximo de participantes</label>
+      <input type="number" formControlName="maxParticipants" min="1" step="1">
+    </div>
+    <div class="data">
+      <label>Tipo de inscripción</label>
+      <select formControlName="typeParticipant">
+        <option value="1x1">Individual</option>
+        <option value="2x2">Equipos de 2x2</option>
+        <option value="3x3">Equipos de 3x3</option>
+        <option value="4x4">Equipos de 4x4</option>
+        <option value="5x5">Equipos de 5x5</option>
+        <option value="6x6">Equipos de 6x6</option>
+        <option value="7x7">Equipos de 7x7</option>
+        <option value="11x11">Equipos de 11x11</option>
+      </select>
+    </div>
+    <div class="data">
+      <label>Precio</label>
+      <input type="number" formControlName="price" min="0" step="0.01">
+    </div>
+    <div class="data">
+      <label>Género</label>
+      <select formControlName="gender">
+          <option value="mixto">Mixto</option>
+          <option value="fem">Femenino</option>
+          <option value="masc">Masculino</option>
+      </select>
+    </div>
+    <div *ngIf="errorMessage !== '' || goodMessage !== ''">
+        <p class="errorMessage" [textContent]="errorMessage"></p>
+        <p class="goodMessage" [textContent]="goodMessage"></p>
+    </div>
+    <div class="button">
+      <button type="submit">Publicar</button>
+    </div>
+  </form>
+</div>

@@ -2,7 +2,7 @@ import { Component, ElementRef, NgZone, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { UpdateUserComponent } from "../update-user/update-user.component";
 import { CommonModule } from '@angular/common';
-import { MediaService } from '../mediaService';
+import { MediaService } from '../media.service';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginDTO } from '@dto/loginDTO';
 import { ProfileDTO } from '@dto/profileDTO';
