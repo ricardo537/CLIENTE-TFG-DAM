@@ -63,3 +63,15 @@ label {
 .goodMessage {
     color: greenyellow;
 }
+
+@media (max-width: 768px) {
+    .container {
+        width: 100%;
+        padding: 0px;
+        margin-bottom: 50px;
+    }
+
+    form {
+        width: 90%;
+    }
+}
