@@ -29,7 +29,7 @@ export class EventCreationFormComponent {
       sport: ['futbol', [Validators.required]],
       minParticipants: ['2', [Validators.required]],
       maxParticipants: ['', [Validators.required]],
-      price: ['', [Validators.required]],
+      price: ['0', [Validators.required]],
       gender: ['mixto', [Validators.required]],
       typeParticipant: ['1x1', [Validators.required]]
     })

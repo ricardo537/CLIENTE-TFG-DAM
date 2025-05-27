@@ -1,1 +1,42 @@
-<p>event-creation-history works!</p>
+<div class="container">
+  <div class="option">
+    <button [routerLink]="['/bolas/dashboard/event-creation/event-creation-form']">Crear eventos</button>
+  </div>
+
+  <div class="scroller">
+    <div *ngFor="let event of events" class="event-card">
+      <div class="header">
+        <div class="creator-info">
+          <p class="creator-name">Creado por <strong>{{ event.creatorName }}</strong></p>
+          <p class="creation-date">{{ formatReadableDateCreation(event.creationDate) }}</p>
+        </div>
+        <div class="participants">
+          <span>{{ event.participants }}/{{ event.maxParticipants }} inscritos</span>
+        </div>
+        <button class="delete" (click)="delete(event.id)">Borrar</button>
+      </div>
+
+      <h3 class="event-title">{{ event.name }}</h3>
+      <p class="event-type">{{ event.type }} de {{ event.sport }}</p>
+      <p class="event-description">{{ event.description }}</p>
+
+      <p class="event-address">
+        Dirección: <a [href]="generateGoogleMapsSearchUrl(event.address)" target="_blank">{{ event.address }}</a>
+      </p>
+
+      <p class="event-dates">
+        Fechas: {{ formatReadableDate(event.startDate) }} - {{ formatReadableDate(event.endDate) }}
+      </p>
+
+      <div *ngIf="event.typeParticipant === '1x1'; else teamTemplate">
+        <p class="registration-info">Inscripción individual ({{ event.gender }})</p>
+        <!--<button class="action-button">Apuntarme</button>-->
+      </div>
+
+      <ng-template #teamTemplate>
+        <p class="registration-info">Inscripción por equipos de {{ event.typeParticipant }} ({{ event.gender }})</p>
+        <!--<button class="action-button">Apuntar equipo</button>-->
+      </ng-template>
+    </div>
+  </div>
+</div>
