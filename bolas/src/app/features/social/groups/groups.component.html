@@ -1,0 +1,14 @@
+<div class="container">
+    <div class="option">
+        <button [routerLink]="['/bolas/dashboard/social/search']">Buscar jugadores</button>
+    </div>
+    <br>
+    <div class="group-container">
+        <div *ngFor="let group of groups" class="group-card">
+            <button>
+                <img [src]="group.img">
+                <h2 [textContent]="group.name"></h2>
+            </button>
+        </div>
+    </div>
+</div>

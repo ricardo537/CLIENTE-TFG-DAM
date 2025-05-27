@@ -9,6 +9,8 @@ import { ProfileComponent } from '@features/auth/profile/profile.component';
 import { EventCreationFormComponent } from '@features/event-creation/event-creation-form/event-creation-form.component';
 import { EventCreationHistoryComponent } from '@features/event-creation/event-creation-history/event-creation-history.component';
 import { HomeComponent } from '@features/events/home/home.component';
+import { GroupsComponent } from '@features/social/groups/groups.component';
+import { SearchUserProfileComponent } from '@features/social/search-player-profile/search-user-profile.component';
 
 export const routes: Routes = [
     { path: 'bolas', children: [
@@ -21,6 +23,12 @@ export const routes: Routes = [
         ]},
         { path: 'dashboard', component: DashboardComponent, title: "Inicio", canActivate: [authSessionGuard], children: [
             { path: 'home', component: HomeComponent, title: 'Home' },
+            { path: 'social', children: [
+                { path: 'groups', component: GroupsComponent, title: 'Mis grupos' },
+                { path: 'search', component: SearchUserProfileComponent, title: 'Buscar usuario'},
+                { path: '', redirectTo: 'groups', pathMatch: 'full' },
+                { path: '**', redirectTo: 'groups', pathMatch: 'full' }
+            ]},
             { path: 'profile', component: ProfileComponent, title: "Perfil" },
             { path: 'event-creation', children: [
                 { path: 'event-creation-form', component: EventCreationFormComponent, title: 'Crear un evento' },

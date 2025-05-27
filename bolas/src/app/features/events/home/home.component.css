@@ -1,8 +1,10 @@
 .container {
   max-width: 900px;
+  height: 110%;
   margin: auto;
   padding: 2rem;
   font-family: Arial, sans-serif;
+  overflow-y: visible;
 }
 
 .option {
@@ -12,17 +14,17 @@
 
 button {
   padding: 7px 10px;
-    border: none;
-    border-radius: 50px;
-    font-weight: 600;
-    font-size: 1rem;
-    cursor: pointer;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    background-color: greenyellow;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-    margin-top: 10px;
+  border: none;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  background-color: greenyellow;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  margin-top: 10px;
 }
 
 .scroller {
