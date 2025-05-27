@@ -8,6 +8,7 @@ import { authSessionGuard } from './core/guards/auth-session.guard';
 import { ProfileComponent } from '@features/auth/profile/profile.component';
 import { EventCreationFormComponent } from '@features/event-creation/event-creation-form/event-creation-form.component';
 import { EventCreationHistoryComponent } from '@features/event-creation/event-creation-history/event-creation-history.component';
+import { HomeComponent } from '@features/events/home/home.component';
 
 export const routes: Routes = [
     { path: 'bolas', children: [
@@ -19,6 +20,7 @@ export const routes: Routes = [
             { path: '**', redirectTo: 'login', pathMatch: 'full' }
         ]},
         { path: 'dashboard', component: DashboardComponent, title: "Inicio", canActivate: [authSessionGuard], children: [
+            { path: 'home', component: HomeComponent, title: 'Home' },
             { path: 'profile', component: ProfileComponent, title: "Perfil" },
             { path: 'event-creation', children: [
                 { path: 'event-creation-form', component: EventCreationFormComponent, title: 'Crear un evento' },
@@ -27,8 +29,8 @@ export const routes: Routes = [
                 { path: '**', redirectTo: 'event-creation-form', pathMatch: 'full' }
             ]},
             //Hay que cambiarlo por inicio/home
-            { path: '', redirectTo: 'profile', pathMatch: 'full' },
-            { path: '**', redirectTo: 'profile', pathMatch: 'full' }
+            { path: '', redirectTo: 'home', pathMatch: 'full' },
+            { path: '**', redirectTo: 'home', pathMatch: 'full' }
         ]},
         { path: '', redirectTo: 'presentation', pathMatch: 'full' },
         { path: '**', redirectTo: 'presentation', pathMatch: 'full' }

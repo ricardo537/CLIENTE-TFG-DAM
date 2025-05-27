@@ -8,7 +8,7 @@
       <div class="header">
         <div class="creator-info">
           <p class="creator-name">Creado por <strong>{{ event.creatorName }}</strong></p>
-          <p class="creation-date">{{ formatReadableDateCreation(event.creationDate) }}</p>
+          <p class="creation-date">{{ this.format.formatReadableDateCreation(event.creationDate) }}</p>
         </div>
         <div class="participants">
           <span>{{ event.participants }}/{{ event.maxParticipants }} inscritos</span>
@@ -21,11 +21,11 @@
       <p class="event-description">{{ event.description }}</p>
 
       <p class="event-address">
-        Dirección: <a [href]="generateGoogleMapsSearchUrl(event.address)" target="_blank">{{ event.address }}</a>
+        Dirección: <a [href]="this.format.generateGoogleMapsSearchUrl(event.address)" target="_blank">{{ event.address }}</a>
       </p>
 
       <p class="event-dates">
-        Fechas: {{ formatReadableDate(event.startDate) }} - {{ formatReadableDate(event.endDate) }}
+        Fechas: {{ this.format.formatReadableDate(event.startDate) }} - {{ this.format.formatReadableDate(event.endDate) }}
       </p>
 
       <div *ngIf="event.typeParticipant === '1x1'; else teamTemplate">

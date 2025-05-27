@@ -1,0 +1,98 @@
+<div class="container">
+  <div *ngIf="this.showFilter; else filterButton" class="filter-container">
+    <span class="close-button" (click)="changeVisibilityOfFilter()">×</span>
+    <h2 class="filter-title">Filtros</h2>
+    <form [formGroup]="this.filter" (ngSubmit)="this.filterEvents()">
+        <div class="filter">
+            <label for="typeParticipant">Tipo de inscripción</label>
+            <select id="typeParticipant" name="typeParticipant" formControlName="typeParticipant">
+                <option value="">Cualquiera</option>
+                <option value="1x1">Individual</option>
+                <option value="2x2">Equipos de 2x2</option>
+                <option value="3x3">Equipos de 3x3</option>
+                <option value="4x4">Equipos de 4x4</option>
+                <option value="5x5">Equipos de 5x5</option>
+                <option value="6x6">Equipos de 6x6</option>
+                <option value="7x7">Equipos de 7x7</option>
+                <option value="11x11">Equipos de 11x11</option>
+            </select>
+        </div>
+        <div class="filter">
+            <label for="gender">Género</label>
+            <select id="gender" name="gender" formControlName="gender">
+                <option value="">Cualquiera</option>
+                <option value="fem">Femenino</option>
+                <option value="masc">Masculino</option>
+                <option value="mixto">Mixto</option>
+            </select>
+        </div>
+        <div class="filter">
+            <label for="type">Tipo de evento</label>
+            <select id="type" name="type" formControlName="type">
+                <option value="">Cualquiera</option>
+                <option value="torneo">Torneo</option>
+                <option value="amistoso">Amistoso</option>
+                <option value="liga">Liga</option>
+                <option value="triangular">Triangular</option>
+                <option value="entrenamiento">Entrenamiento</option>
+            </select>
+        </div>
+        <div class="filter">
+            <label>Deporte</label>
+            <select formControlName="sport">
+                <option value="">Cualquiera</option>
+                <option value="voleibol">Voleibol</option>
+                <option value="tenis">Tenis</option>
+                <option value="futbol">Fútbol</option>
+                <option value="baloncesto">Baloncesto</option>
+            </select>
+        </div>
+        <div class="filter">
+            <label for="startDate">Fecha de inicio</label>
+            <input type="datetime-local" id="startDate" name="startDate" formControlName="startDate">
+        </div>
+        <div class="button-container">
+            <button type="submit" class="apply-button">Aplicar</button>
+        </div>
+    </form>
+  </div>
+  <ng-template #filterButton>
+    <button (click)="changeVisibilityOfFilter()">Filtrar eventos</button>
+  </ng-template>
+
+  <div class="scroller">
+    <div *ngFor="let event of events" class="event-card">
+      <div class="header">
+        <div class="creator-info">
+          <p class="creator-name">Creado por <strong>{{ event.creatorName }}</strong></p>
+          <p class="creation-date">{{ this.format.formatReadableDateCreation(event.creationDate) }}</p>
+        </div>
+        <div class="participants">
+          <span>{{ event.participants }}/{{ event.maxParticipants }} inscritos</span>
+        </div>
+      </div>
+
+      <h3 class="event-title">{{ event.name }}</h3>
+      <p class="event-type">{{ event.type }} de {{ event.sport }}</p>
+      <p class="event-description">{{ event.description }}</p>
+
+      <p class="event-address">
+        Dirección: <a [href]="this.format.generateGoogleMapsSearchUrl(event.address)" target="_blank">{{ event.address }}</a>
+      </p>
+
+      <p class="event-dates">
+        Fechas: {{ this.format.formatReadableDate(event.startDate) }} - {{ this.format.formatReadableDate(event.endDate) }}
+      </p>
+
+      <div *ngIf="event.typeParticipant === '1x1'; else teamTemplate">
+        <p class="registration-info">Inscripción individual ({{ event.gender }})</p>
+        <button class="action-button">Apuntarme</button>
+      </div>
+
+      <ng-template #teamTemplate>
+        <p class="registration-info">Inscripción por equipos de {{ event.typeParticipant }} ({{ event.gender }})</p>
+        <button class="action-button">Apuntar equipo</button>
+      </ng-template>
+    </div>
+  </div>
+</div>

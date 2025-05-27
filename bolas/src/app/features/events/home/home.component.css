@@ -1,0 +1,212 @@
+.container {
+  max-width: 900px;
+  margin: auto;
+  padding: 2rem;
+  font-family: Arial, sans-serif;
+}
+
+.option {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+button {
+  padding: 7px 10px;
+    border: none;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background-color: greenyellow;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+.scroller {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.event-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.creator-info {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.participants {
+  background-color: #e0f2f1;
+  color: #00695c;
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: bold;
+}
+
+.event-title {
+  margin-top: 1rem;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.event-type {
+  color: #555;
+  font-weight: bold;
+  margin-top: 0.2rem;
+}
+
+.event-description {
+  margin-top: 0.8rem;
+  color: #444;
+}
+
+.event-address, .event-dates, .registration-info {
+  margin-top: 0.6rem;
+  color: #555;
+}
+
+.event-address a {
+  color: #1e88e5;
+  text-decoration: none;
+}
+
+.event-address a:hover {
+  text-decoration: underline;
+}
+
+.action-button {
+  background-color: #43a047;
+  color: white;
+  width: 100%;
+}
+
+.action-button:hover {
+  background-color: #388e3c;
+}
+
+.filter-container {
+    position: relative; /* Necesario para posicionar la cruz */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(225, 225, 225);
+    padding: 20px;
+    border: 1px solid rgb(184, 184, 185);
+    border-radius: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.filter-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+    background: none;
+    border: none;
+    line-height: 1;
+    padding: 5px;
+    transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.close-button:hover {
+    color: #ff3b30;
+    transform: scale(1.2); /* Efecto de zoom al pasar el ratón */
+}
+
+form {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; /* Distribuir equitativamente */
+    width: 100%;
+    max-width: 800px; /* Ajustar al tamaño deseado */
+    gap: 10px;
+}
+
+.filter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid rgb(184, 184, 185);
+    padding: 10px; /* Espacio interno para mejor visualización */
+    flex-grow: 1; /* Permite que los filtros crezcan proporcionalmente */
+}
+
+select, input[type="date"] {
+    width: 100%;
+    margin-top: 5px;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid rgb(184, 184, 185);
+    font-size: 16px;
+}
+
+button[type="submit"] {
+    width: 100%;
+}
+
+.button-container {
+    margin-top: 20px;
+}
+
+.apply-button {
+    padding: 10px 20px;
+    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888, #7e1fa7);
+    color: white;
+    border: none;
+    border-radius: 30px; /* Botón redondeado */
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.apply-button:hover {
+    transform: scale(1.05); /* Efecto de zoom al pasar el ratón */
+    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.3);
+}
+
+.apply-button:active {
+    transform: scale(0.95); /* Efecto de presión al hacer clic */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+    .container {
+        width: 100%;
+        padding: 0px;
+        margin-bottom: 50px;
+    }
+
+    form {
+        flex-direction: column;
+    }
+}
