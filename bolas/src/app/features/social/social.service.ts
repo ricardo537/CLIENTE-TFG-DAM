@@ -14,6 +14,8 @@ export class SocialService {
   private apiSearchUserURL = "http://localhost:8080/bolas/api/group/find/user/";
   private apiFollowURL = "http://localhost:8080/bolas/api/group/follow";
   private apiUnfollowURL = "http://localhost:8080/bolas/api/group/stopFollowing";
+  private apiGetFollowers = "http://localhost:8080/bolas/api/group/getFollowers";
+  private apiGetFollows = "http://localhost:8080/bolas/api/group/getFollows";
 
   constructor(private http: HttpClient) { }
 
@@ -52,5 +54,19 @@ export class SocialService {
       }
     }
     return this.http.post<Boolean>(this.apiUnfollowURL, body);
+  }
+
+  public getFollowers(id: IdDTO): Observable<UserResumeDTO[]> {
+    const body = {
+      id: id.id
+    }
+    return this.http.post<UserResumeDTO[]>(this.apiGetFollowers, body);
+  }
+
+  public getFollows(id: IdDTO): Observable<UserResumeDTO[]> {
+    const body = {
+      id: id.id
+    }
+    return this.http.post<UserResumeDTO[]>(this.apiGetFollows, body);
   }
 }

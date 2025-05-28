@@ -1,0 +1,11 @@
+<div class="container">
+    <h2>Seguidores</h2>
+    <div class="user-container">
+        <div *ngFor="let user of followers" class="user-card">
+            <button [routerLink]="['/bolas/dashboard/user', user.id]">
+                <img [src]="user.img">
+                <h2 [textContent]="user.name"></h2>
+            </button>
+        </div>
+    </div>
+</div>

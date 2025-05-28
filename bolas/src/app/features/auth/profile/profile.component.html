@@ -9,8 +9,8 @@
             <img [src]="profile.img" (click)="openSelector()">
             <input type="file" #inputFile (change)="fileSelected($event)" accept="image/*" hidden />
             <div class="relations">
-                <a href=""><p>{{ profile.followers }} seguidores</p></a>
-                <a href=""><p>{{ profile.follows }} seguidos</p></a>
+                <a [routerLink]="['/bolas/dashboard/followers', this.id]"><p>{{ profile.followers }} seguidores</p></a>
+                <a [routerLink]="['/bolas/dashboard/follows', this.id]"><p>{{ profile.follows }} seguidos</p></a>
             </div>
         </div>
         <div class="user-data">

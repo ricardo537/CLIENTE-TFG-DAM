@@ -11,8 +11,8 @@
         <div class="photo">
             <img [src]="profile.img">
             <div class="relations">
-                <a href=""><p>{{ profile.followers }} seguidores</p></a>
-                <a href=""><p>{{ profile.follows }} seguidos</p></a>
+                <a [routerLink]="['/bolas/dashboard/followers', this.userId.id]"><p>{{ profile.followers }} seguidores</p></a>
+                <a [routerLink]="['/bolas/dashboard/follows', this.userId.id]"><p>{{ profile.follows }} seguidos</p></a>
             </div>
         </div>
         <div class="user-data">

@@ -1,5 +1,5 @@
 import { Component, ElementRef, NgZone, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { UpdateUserComponent } from "../update-user/update-user.component";
 import { CommonModule } from '@angular/common';
 import { MediaService } from '../media.service';
@@ -11,7 +11,7 @@ import { IdDTO } from '@dto/idDTO';
 
 @Component({
   selector: 'app-profile',
-  imports: [UpdateUserComponent, CommonModule, HttpClientModule],
+  imports: [UpdateUserComponent, CommonModule, HttpClientModule, RouterLink],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css',
   providers: [MediaService, AuthService]
@@ -22,10 +22,12 @@ export class ProfileComponent {
   public wantToDelete: boolean = false;
   @ViewChild('inputFile') inputFile!: ElementRef<HTMLInputElement>;
   public profile: ProfileDTO = ProfileDTO.getVoid();
+  public id: string = "";
 
   constructor (private router: Router, private mediaService: MediaService, private authService: AuthService, private zone: NgZone) {
     this.authService.getMyId().subscribe({
       next: (response: IdDTO) => {
+        this.id = response.id;
         this.authService.getProfile(response).subscribe({
           next: (prof: ProfileDTO) => {
             this.profile = prof;

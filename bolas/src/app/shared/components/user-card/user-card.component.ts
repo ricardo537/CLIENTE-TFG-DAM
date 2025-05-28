@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { Component, ElementRef, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component } from '@angular/core';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { IdDTO } from '@dto/idDTO';
 import { ProfileDTO } from '@dto/profileDTO';
 import { AuthService } from '@features/auth/auth.service';
@@ -9,15 +9,14 @@ import { SocialService } from '@features/social/social.service';
 
 @Component({
   selector: 'app-user-card',
-  imports: [HttpClientModule, CommonModule],
+  imports: [HttpClientModule, CommonModule, RouterLink],
   templateUrl: './user-card.component.html',
   styleUrl: './user-card.component.css',
   providers: [AuthService, SocialService]
 })
 export class UserCardComponent {
   public profile: ProfileDTO = ProfileDTO.getVoid();
-  private userId: IdDTO = new IdDTO("");
-   @ViewChild('inputFile') inputFile!: ElementRef<HTMLInputElement>;
+  public userId: IdDTO = new IdDTO("");
 
   constructor(private authService: AuthService, private route: ActivatedRoute, private socialService: SocialService) {
     this.route.paramMap.subscribe(params => {

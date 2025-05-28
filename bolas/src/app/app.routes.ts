@@ -13,6 +13,8 @@ import { GroupsComponent } from '@features/social/groups/groups.component';
 import { SearchUserProfileComponent } from '@features/social/search-player-profile/search-user-profile.component';
 import { UserCardComponent } from './shared/components/user-card/user-card.component';
 import { GroupChatComponent } from './shared/components/group-chat/group-chat.component';
+import { FollowersListComponent } from './shared/components/followers-list/followers-list.component';
+import { FollowsListComponent } from './shared/components/follows-list/follows-list.component';
 
 export const routes: Routes = [
     { path: 'bolas', children: [
@@ -39,6 +41,8 @@ export const routes: Routes = [
                 { path: '**', redirectTo: 'event-creation-form', pathMatch: 'full' }
             ]},
             { path: 'user/:id', component: UserCardComponent, title: 'Ver usuario' },
+            { path: 'followers/:id', component: FollowersListComponent, title: 'Seguidores' },
+            { path: 'follows/:id', component: FollowsListComponent, title: 'Seguidos' },
             { path: 'group/:id', component: GroupChatComponent, title: 'Chat' },
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: '**', redirectTo: 'home', pathMatch: 'full' }
