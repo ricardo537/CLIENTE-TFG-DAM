@@ -11,6 +11,8 @@ import { EventCreationHistoryComponent } from '@features/event-creation/event-cr
 import { HomeComponent } from '@features/events/home/home.component';
 import { GroupsComponent } from '@features/social/groups/groups.component';
 import { SearchUserProfileComponent } from '@features/social/search-player-profile/search-user-profile.component';
+import { UserCardComponent } from './shared/components/user-card/user-card.component';
+import { GroupChatComponent } from './shared/components/group-chat/group-chat.component';
 
 export const routes: Routes = [
     { path: 'bolas', children: [
@@ -36,7 +38,8 @@ export const routes: Routes = [
                 { path: '', redirectTo: 'event-creation-form', pathMatch: 'full' },
                 { path: '**', redirectTo: 'event-creation-form', pathMatch: 'full' }
             ]},
-            //Hay que cambiarlo por inicio/home
+            { path: 'user/:id', component: UserCardComponent, title: 'Ver usuario' },
+            { path: 'group/:id', component: GroupChatComponent, title: 'Chat' },
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: '**', redirectTo: 'home', pathMatch: 'full' }
         ]},

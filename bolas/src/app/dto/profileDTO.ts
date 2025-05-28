@@ -8,8 +8,9 @@ export class ProfileDTO {
 	followers: number;
 	follows: number;
 	stats: StatsDSDTO;
+    follow: boolean;
 
-    constructor (id:string, name:string, description:string, img:string, followers:number, follows:number, stats:StatsDSDTO) {
+    constructor (id:string, name:string, description:string, img:string, followers:number, follows:number, stats:StatsDSDTO, follow: boolean) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -17,9 +18,10 @@ export class ProfileDTO {
         this.followers = followers;
         this.follows = follows;
         this.stats = stats;
+        this.follow = follow;
     }
 
     public static getVoid(): ProfileDTO {
-        return new ProfileDTO("","","","",0,0,StatsDSDTO.getVoid());
+        return new ProfileDTO("","","","",0,0,StatsDSDTO.getVoid(), false);
     }
 }

@@ -1,0 +1,29 @@
+<div class="profile-container">
+    <div class="player-card">
+        <div class="options">
+            <div *ngIf="profile.follow; else notFollow">
+                <button (click)="unfollow()">Dejar de seguir</button>
+            </div>
+            <ng-template #notFollow>
+                <button (click)="follow()">Seguir</button>
+            </ng-template>
+        </div>
+        <div class="photo">
+            <img [src]="profile.img">
+            <div class="relations">
+                <a href=""><p>{{ profile.followers }} seguidores</p></a>
+                <a href=""><p>{{ profile.follows }} seguidos</p></a>
+            </div>
+        </div>
+        <div class="user-data">
+            <h2 [textContent]="profile.name"></h2>
+            <p [textContent]="profile.description"></p>
+        </div>
+        <div class="sports-stats">
+
+        </div>
+    </div>
+    <div class="event-stats">
+        
+    </div>
+</div>

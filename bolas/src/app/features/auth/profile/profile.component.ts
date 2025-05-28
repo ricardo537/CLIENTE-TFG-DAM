@@ -26,10 +26,8 @@ export class ProfileComponent {
   constructor (private router: Router, private mediaService: MediaService, private authService: AuthService, private zone: NgZone) {
     this.authService.getMyId().subscribe({
       next: (response: IdDTO) => {
-        console.log(response);
         this.authService.getProfile(response).subscribe({
           next: (prof: ProfileDTO) => {
-            console.log(prof);
             this.profile = prof;
           }
         });

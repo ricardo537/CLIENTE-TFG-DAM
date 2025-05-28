@@ -74,8 +74,13 @@ export class AuthService {
   }
 
   public getProfile(id: IdDTO): Observable<ProfileDTO> {
+    const session = LoginDTO.getSession();
     const body = {
-      "id": id.id
+      "id": id.id,
+      "session": {
+        "email": session.email,
+        "password": session.password
+      }
     };
     return this.http.post<ProfileDTO>(this.apiGetProfileURL, body);
   }

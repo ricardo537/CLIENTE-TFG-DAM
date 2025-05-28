@@ -5,7 +5,7 @@
     <br>
     <div class="group-container">
         <div *ngFor="let group of groups" class="group-card">
-            <button>
+            <button [routerLink]="['/bolas/dashboard/group', group.id]">
                 <img [src]="group.img">
                 <h2 [textContent]="group.name"></h2>
             </button>

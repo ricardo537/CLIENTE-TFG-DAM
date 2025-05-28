@@ -4,6 +4,7 @@ import { LoginDTO } from '@dto/loginDTO';
 import { Observable } from 'rxjs';
 import { GroupResumeDTO } from '@dto/groupResumeDTO';
 import { UserResumeDTO } from '@dto/userResumeDTO';
+import { IdDTO } from '@dto/idDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,8 @@ import { UserResumeDTO } from '@dto/userResumeDTO';
 export class SocialService {
   private apiGetMyGroupsURL = "http://localhost:8080/bolas/api/group/getMyGroups";
   private apiSearchUserURL = "http://localhost:8080/bolas/api/group/find/user/";
+  private apiFollowURL = "http://localhost:8080/bolas/api/group/follow";
+  private apiUnfollowURL = "http://localhost:8080/bolas/api/group/stopFollowing";
 
   constructor(private http: HttpClient) { }
 
@@ -25,5 +28,29 @@ export class SocialService {
 
   public searchUser(search:any): Observable<UserResumeDTO[]> {
     return this.http.get<UserResumeDTO[]>(`${this.apiSearchUserURL}${search}`);
+  }
+
+  public follow(id: IdDTO): Observable<Boolean> {
+    const session = LoginDTO.getSession();
+    const body = {
+      userId: id.id,
+      session: {
+          email: session.email,
+          password: session.password
+      }
+    }
+    return this.http.post<Boolean>(this.apiFollowURL, body);
+  }
+
+  public unFollow(id: IdDTO): Observable<Boolean> {
+    const session = LoginDTO.getSession();
+    const body = {
+      userId: id.id,
+      session: {
+          email: session.email,
+          password: session.password
+      }
+    }
+    return this.http.post<Boolean>(this.apiUnfollowURL, body);
   }
 }
