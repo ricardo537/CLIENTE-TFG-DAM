@@ -77,6 +77,11 @@ button:hover {
     color: white;
 }
 
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
 @media (max-width: 768px) {
     .photo img {
         width: 80px;

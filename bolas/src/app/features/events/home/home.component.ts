@@ -70,4 +70,12 @@ export class HomeComponent implements OnInit, OnDestroy {
   public changeVisibilityOfFilter(): void {
     this.showFilter = !this.showFilter;
   }
+
+  public join(eventId: string) {
+    this.service.joinEvent("", eventId).subscribe({
+      next: (response) => {
+        window.location.reload();
+      }
+    })
+  }
 }

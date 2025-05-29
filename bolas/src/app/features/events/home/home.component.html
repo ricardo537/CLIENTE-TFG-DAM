@@ -86,7 +86,7 @@
 
       <div *ngIf="event.typeParticipant === '1x1'; else teamTemplate">
         <p class="registration-info">Inscripción individual ({{ event.gender }})</p>
-        <button class="action-button">Apuntarme</button>
+        <button class="action-button" (click)="this.join(event.id)">Apuntarme</button>
       </div>
 
       <ng-template #teamTemplate>
