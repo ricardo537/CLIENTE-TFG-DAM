@@ -16,6 +16,7 @@ import { GroupChatComponent } from './shared/components/group-chat/group-chat.co
 import { FollowersListComponent } from './shared/components/followers-list/followers-list.component';
 import { FollowsListComponent } from './shared/components/follows-list/follows-list.component';
 import { EventsIJoinComponent } from './shared/components/events-ijoin/events-ijoin.component';
+import { CreateGroupComponent } from '@features/social/create-group/create-group.component';
 
 export const routes: Routes = [
     { path: 'bolas', children: [
@@ -32,6 +33,7 @@ export const routes: Routes = [
             { path: 'social', children: [
                 { path: 'groups', component: GroupsComponent, title: 'Mis grupos' },
                 { path: 'search', component: SearchUserProfileComponent, title: 'Buscar usuario'},
+                { path: 'create-group', component: CreateGroupComponent, title: 'Crear grupo' },
                 { path: '', redirectTo: 'groups', pathMatch: 'full' },
                 { path: '**', redirectTo: 'groups', pathMatch: 'full' }
             ]},

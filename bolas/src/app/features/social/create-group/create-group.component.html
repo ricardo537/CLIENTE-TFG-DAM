@@ -1,0 +1,16 @@
+<div class="container">
+    <div class="option">
+        <button [routerLink]="['/bolas/dashboard/social/groups']">Mis grupos</button>
+        <button [routerLink]="['/bolas/dashboard/social/create-group']">Crear grupo</button>
+    </div>
+    <br>
+    <div class="form">
+        <form [formGroup]="groupData" (ngSubmit)="createGroup()">
+            <label>Nombre del grupo</label>
+            <input type="text" formControlName="name">
+            <p [textContent]="this.message" class="error-message"></p>
+            <p [textContent]="this.successMessage" class="success-message"></p>
+            <button class="send" type="submit">Crear grupo</button>
+        </form>
+    </div>
+</div>

@@ -16,6 +16,7 @@ export class SocialService {
   private apiUnfollowURL = "http://localhost:8080/bolas/api/group/stopFollowing";
   private apiGetFollowers = "http://localhost:8080/bolas/api/group/getFollowers";
   private apiGetFollows = "http://localhost:8080/bolas/api/group/getFollows";
+  private apiCreateGroupURL = "http://localhost:8080/bolas/api/group/create";
 
   constructor(private http: HttpClient) { }
 
@@ -68,5 +69,17 @@ export class SocialService {
       id: id.id
     }
     return this.http.post<UserResumeDTO[]>(this.apiGetFollows, body);
+  }
+
+  public createGroup(nameGroup: string): Observable<Boolean> {
+    const session = LoginDTO.getSession();
+    const body = {
+      name: nameGroup,
+      session: {
+        email: session.email,
+        password: session.password
+      }
+    }
+    return this.http.post<Boolean>(this.apiCreateGroupURL, body);
   }
 }
