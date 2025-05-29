@@ -6,13 +6,15 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { FormatData } from 'app/shared/utils/format-data';
 import { FilterEventDTO } from '@dto/filterEventDTO';
+import { SocialService } from '@features/social/social.service';
+import { GroupResumeDTO } from '@dto/groupResumeDTO';
 
 @Component({
   selector: 'app-home',
   imports: [HttpClientModule, CommonModule, ReactiveFormsModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
-  providers: [EventService]
+  providers: [EventService, SocialService]
 })
 export class HomeComponent implements OnInit, OnDestroy {
   public events: EventDTO[] = [];
@@ -21,9 +23,12 @@ export class HomeComponent implements OnInit, OnDestroy {
   public format: FormatData = new FormatData();
   private pastFilter: FilterEventDTO = FilterEventDTO.getFilter();
   public showFilter: boolean = false;
+  public searchGroup: boolean = false;
+  public groups: GroupResumeDTO[] = [];
+  public eventId: string = '';
 
-  constructor (private service: EventService, private builder: FormBuilder) {
-    this.filter = builder.group({
+  constructor (private service: EventService, private builder: FormBuilder, private socialService: SocialService) {
+    this.filter = this.builder.group({
       startDate: [this.pastFilter.startDate, []],
       type: [this.pastFilter.type, []],
       gender: [this.pastFilter.gender, []],
@@ -35,6 +40,11 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.refreshEvents();
     window.addEventListener('scroll', this.handleScroll, true);
+    this.socialService.getFilteredEvents().subscribe({
+      next: (response: GroupResumeDTO[]) => {
+        this.groups = response;
+      }
+    })
   }
 
   ngOnDestroy(): void {
@@ -71,11 +81,20 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.showFilter = !this.showFilter;
   }
 
-  public join(eventId: string) {
-    this.service.joinEvent("", eventId).subscribe({
+  public join(groupId: string, eventId: string) {
+    console.log(eventId);
+    this.service.joinEvent(groupId, eventId).subscribe({
       next: (response) => {
         window.location.reload();
       }
     })
+    this.searchGroup = false;
   }
+
+  public searchTeamChangeVisibility (eventId: string): void {
+    this.eventId = eventId;
+    console.log(eventId);
+    this.searchGroup = !this.searchGroup;
+  }
+
 }

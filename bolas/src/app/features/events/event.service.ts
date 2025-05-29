@@ -31,7 +31,7 @@ export class EventService {
             password: session.password
         }
     }
-    return this.http.post<EventDTO[]>(`${this.apiGetFilteredEventsURL}${page}&size=3`, body);
+    return this.http.post<EventDTO[]>(`${this.apiGetFilteredEventsURL}${page}&size=6`, body);
   }
 
   public getGroupEvents(groupId: string): Observable<EventGroupDTO[]> {

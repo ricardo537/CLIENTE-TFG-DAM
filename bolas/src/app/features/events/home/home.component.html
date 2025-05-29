@@ -86,13 +86,23 @@
 
       <div *ngIf="event.typeParticipant === '1x1'; else teamTemplate">
         <p class="registration-info">Inscripción individual ({{ event.gender }})</p>
-        <button class="action-button" (click)="this.join(event.id)">Apuntarme</button>
+        <button class="action-button" (click)="this.join('', event.id)">Apuntarme</button>
       </div>
 
       <ng-template #teamTemplate>
         <p class="registration-info">Inscripción por equipos de {{ event.typeParticipant }} ({{ event.gender }})</p>
-        <button class="action-button">Apuntar equipo</button>
+        <button class="action-button" (click)="this.searchTeamChangeVisibility(event.id)">Apuntar equipo</button>
       </ng-template>
     </div>
   </div>
+  <div class="group-container" *ngIf="searchGroup">
+    <h2>Selecciona un grupo</h2>
+    <button class="close-button" (click)="this.searchTeamChangeVisibility('')">X</button>
+        <div *ngFor="let group of groups" class="group-card">
+            <button (click)="this.join(group.id, this.eventId)">
+                <img [src]="group.img">
+                <h2 [textContent]="group.name"></h2>
+            </button>
+        </div>
+    </div>
 </div>
