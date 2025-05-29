@@ -3,7 +3,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EventGroupDTO } from '@dto/eventGroupDTO';
+import { GroupResumeDTO } from '@dto/groupResumeDTO';
+import { UserResumeDTO } from '@dto/userResumeDTO';
 import { EventService } from '@features/events/event.service';
+import { SocialService } from '@features/social/social.service';
 import { FormatData } from 'app/shared/utils/format-data';
 
 @Component({
@@ -11,17 +14,29 @@ import { FormatData } from 'app/shared/utils/format-data';
   imports: [CommonModule, HttpClientModule],
   templateUrl: './group-chat.component.html',
   styleUrl: './group-chat.component.css',
-  providers: [EventService]
+  providers: [EventService, SocialService]
 })
 export class GroupChatComponent {
   public groupId: string = "";
+  public groupData: GroupResumeDTO = new GroupResumeDTO('0', 'No se ha encontrado el grupo', '');
   public events: EventGroupDTO[] = [];
+  public members: UserResumeDTO[] = []
   public format: FormatData = new FormatData();
 
-  constructor (private route: ActivatedRoute, private eventService: EventService) {
+  constructor (private route: ActivatedRoute, private eventService: EventService, private socialService: SocialService) {
     this.route.paramMap.subscribe(params => {
           this.groupId = params.get('id') || '';
           this.refreshEvents();
+          this.socialService.getGroupData(this.groupId).subscribe({
+            next: (response: GroupResumeDTO) => {
+              this.groupData = response;
+              this.socialService.getMembersOfGroup(this.groupId).subscribe({
+                next: (memberList: UserResumeDTO[]) => {
+                  this.members = memberList;
+                }
+              })
+            }
+          })
     });
   }
 

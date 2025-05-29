@@ -1,7 +1,8 @@
 <div class="container">
     <div class="title">
-        <img src="">
-        <h2>Nombre del grupo</h2>
+        <img [src]="this.groupData.img">
+        <h2 [textContent]="this.groupData.name"></h2>
+        <!--Falta poner los integrantes del grupo-->
     </div>
     <div class="event-container">
         <div *ngFor="let event of events" class="event-card">

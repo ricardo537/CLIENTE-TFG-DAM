@@ -17,6 +17,8 @@ export class SocialService {
   private apiGetFollowers = "http://localhost:8080/bolas/api/group/getFollowers";
   private apiGetFollows = "http://localhost:8080/bolas/api/group/getFollows";
   private apiCreateGroupURL = "http://localhost:8080/bolas/api/group/create";
+  private apiGetMembersURL = "http://localhost:8080/bolas/api/group/getMembers";
+  private apiGetGroupDataURL = "http://localhost:8080/bolas/api/group/getGroup/";
 
   constructor(private http: HttpClient) { }
 
@@ -81,5 +83,17 @@ export class SocialService {
       }
     }
     return this.http.post<Boolean>(this.apiCreateGroupURL, body);
+  }
+
+  public getMembersOfGroup(groupId: string): Observable<UserResumeDTO[]> {
+    const body = {
+      id: groupId
+    }
+    return this.http.post<UserResumeDTO[]>(this.apiGetMembersURL, body);
+  }
+
+  public getGroupData(groupId: string): Observable<GroupResumeDTO> {
+    return this.http.get<GroupResumeDTO>(`${this.apiGetGroupDataURL}${groupId}`);
+
   }
 }
