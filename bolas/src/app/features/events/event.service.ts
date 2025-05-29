@@ -15,6 +15,7 @@ export class EventService {
   private apiJoinEventURL = "http://localhost:8080/bolas/api/event/join";
   private apiJoinInTeamURL = "http://localhost:8080/bolas/api/event/joinTeam";
   private apiUnjoinURL = "http://localhost:8080/bolas/api/event/unjoin";
+  private apiGetEventsIJoinURL = "http://localhost:8080/bolas/api/event/getEventsIJoin";
 
   constructor(private http: HttpClient) { }
 
@@ -82,5 +83,14 @@ export class EventService {
       }
     }
     return this.http.post<Boolean>(this.apiUnjoinURL, body);
+  }
+
+  public getEventsIJoin(): Observable<EventDTO[]> {
+    const session = LoginDTO.getSession();
+    const body = {
+      email: session.email,
+      password: session.password
+    }
+    return this.http.post<EventDTO[]>(this.apiGetEventsIJoinURL, body);
   }
 }

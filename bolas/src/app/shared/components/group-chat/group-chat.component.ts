@@ -21,12 +21,32 @@ export class GroupChatComponent {
   constructor (private route: ActivatedRoute, private eventService: EventService) {
     this.route.paramMap.subscribe(params => {
           this.groupId = params.get('id') || '';
-          this.eventService.getGroupEvents(this.groupId).subscribe({
-            next: (response: EventGroupDTO[]) => {
-              this.events = response;
-            }
-          })
+          this.refreshEvents();
     });
+  }
+
+  private refreshEvents(): void {
+    this.eventService.getGroupEvents(this.groupId).subscribe({
+        next: (response: EventGroupDTO[]) => {
+          this.events = response;
+        }
+    })
+  }
+
+  public unjoin(eventId: string) {
+    this.eventService.unjoin(eventId).subscribe({
+      next: (response) => {
+        window.location.reload();
+      }
+    });
+  }
+
+  public join(eventId: string): void {
+    this.eventService.joinEventInTeam(this.groupId, eventId).subscribe({
+      next: (response) => {
+        window.location.reload();
+      }
+    })
   }
 
 }

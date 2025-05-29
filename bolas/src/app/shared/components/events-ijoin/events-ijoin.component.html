@@ -1,7 +1,7 @@
 <div class="container">
     <div class="title">
         <img src="">
-        <h2>Nombre del grupo</h2>
+        <h2>Eventos que voy a participar</h2>
     </div>
     <div class="event-container">
         <div *ngFor="let event of events" class="event-card">
@@ -27,15 +27,10 @@
             Fechas: {{ this.format.formatReadableDate(event.startDate) }} - {{ this.format.formatReadableDate(event.endDate) }}
         </p>
 
-        <div *ngIf="event.participating; else participing">
+        <div>
             <p class="registration-info">Equipos de {{ event.typeParticipant }} ({{ event.gender }})</p>
             <button class="action-button" (click)="this.unjoin(event.id)">Desapuntarme</button>
         </div>
-
-        <ng-template #participing>
-            <p class="registration-info">Equipos de {{ event.typeParticipant }} ({{ event.gender }})</p>
-            <button class="action-button" (click)="this.join(event.id)">Apuntarme</button>
-        </ng-template>
         </div>
     </div>
 </div>

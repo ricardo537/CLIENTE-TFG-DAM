@@ -15,6 +15,7 @@ import { UserCardComponent } from './shared/components/user-card/user-card.compo
 import { GroupChatComponent } from './shared/components/group-chat/group-chat.component';
 import { FollowersListComponent } from './shared/components/followers-list/followers-list.component';
 import { FollowsListComponent } from './shared/components/follows-list/follows-list.component';
+import { EventsIJoinComponent } from './shared/components/events-ijoin/events-ijoin.component';
 
 export const routes: Routes = [
     { path: 'bolas', children: [
@@ -27,6 +28,7 @@ export const routes: Routes = [
         ]},
         { path: 'dashboard', component: DashboardComponent, title: "Inicio", canActivate: [authSessionGuard], children: [
             { path: 'home', component: HomeComponent, title: 'Home' },
+            { path: 'events-i-join', component: EventsIJoinComponent, title: "Eventos inscritos" },
             { path: 'social', children: [
                 { path: 'groups', component: GroupsComponent, title: 'Mis grupos' },
                 { path: 'search', component: SearchUserProfileComponent, title: 'Buscar usuario'},

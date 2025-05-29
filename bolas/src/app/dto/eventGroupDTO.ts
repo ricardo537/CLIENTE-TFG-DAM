@@ -15,7 +15,7 @@ export class EventGroupDTO {
     typeParticipant: string;
     creatorName: string;
     participants: number;
-    participing: boolean;
+    participating: boolean;
 
     constructor (id:string, name:string, description:string, address:string, startDate:string, endDate:string, creationDate:string, type:string, sport:string, minParticipants:number, maxParticipants:number, price:number, gender:string, typeParticipant:string, creatorName:string, participants:number, participing:boolean) {
         this.id = id;
@@ -34,6 +34,6 @@ export class EventGroupDTO {
         this.typeParticipant = typeParticipant;
         this.creatorName = creatorName;
         this.participants = participants;
-        this.participing = participing;
+        this.participating = participing;
     }
 }
