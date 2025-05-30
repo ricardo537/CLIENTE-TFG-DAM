@@ -96,10 +96,82 @@ button {
   background-color: #388e3c;
 }
 
+img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 2px solid #dbdbdb;
+  margin-right: 30px;
+  cursor: pointer;
+  transition: filter 0.3s ease;
+}
+
+.title {
+  display: flex;
+  flex-direction: column; 
+  width: 100%;
+  align-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.user-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.user-card button {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background-color: #f8f9fa;
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.user-card button:hover {
+  background-color: #e2e6ea;
+}
+
+.user-card img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 15px;
+  border: 2px solid #dee2e6;
+}
+
+.user-card h2 {
+  font-size: 18px;
+  margin: 0;
+  color: #333;
+}
+
+h3 {
+  text-align: center;
+}
+
+input {
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+}
+
 @media (max-width: 768px) {
     .container {
         width: 100%;
         padding: 0px;
+        margin-top: 10px;
         margin-bottom: 50px;
+    }
+
+    img {
+      width: 100px;
+      height: 100px;
     }
 }

@@ -1,10 +1,32 @@
 <div class="container">
     <div class="title">
-        <img [src]="this.groupData.img">
-        <h2 [textContent]="this.groupData.name"></h2>
-        <!--Falta poner los integrantes del grupo-->
+        <img [src]="this.groupData.img" (click)="openSelector()">
+        <input type="file" #inputFile (change)="fileSelected($event)" accept="image/*" hidden />
+        <div class="data" *ngIf="changeName; else noChange;">
+            <div class="row">
+                <input type="text" [(ngModel)]="newName" [value]="this.groupData.name">
+                <button class="update" (click)="this.updateName()">Actualizar</button>
+            </div>
+        </div>
+        <ng-template #noChange>
+            <div>
+                <h2 [textContent]="this.groupData.name"></h2>
+                <button class="update" (click)="this.changeNameVisibility()">Actualizar</button>
+            </div>
+        </ng-template>
     </div>
+    <div class="user-container">
+        <h3>Miembros del grupo</h3>
+        <div class="user-card" *ngFor="let member of members">
+            <button [routerLink]="['/bolas/dashboard/user', member.id]">
+                <img [src]="member.img">
+                <h2 [textContent]="member.name"></h2>
+            </button>
+        </div>
+    </div>
+    <br>
     <div class="event-container">
+        <h3>Eventos del equipo</h3>
         <div *ngFor="let event of events" class="event-card">
         <div class="header">
             <div class="creator-info">
