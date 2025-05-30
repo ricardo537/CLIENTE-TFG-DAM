@@ -16,7 +16,15 @@
         </ng-template>
     </div>
     <div class="user-container">
-        <h3>Miembros del grupo</h3>
+        <div class="options-members">
+            <div class="header">
+                <h3>Miembros del grupo</h3>
+            </div>
+            <div class="buttons-members">
+                <button class="addMember">Añadir usuario</button>
+                <button class="exit" (click)="this.exit()">Salir del grupo</button>
+            </div>
+        </div>
         <div class="user-card" *ngFor="let member of members">
             <button [routerLink]="['/bolas/dashboard/user', member.id]">
                 <img [src]="member.img">

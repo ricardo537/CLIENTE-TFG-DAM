@@ -20,6 +20,8 @@ export class SocialService {
   private apiGetMembersURL = "http://localhost:8080/bolas/api/group/getMembers";
   private apiGetGroupDataURL = "http://localhost:8080/bolas/api/group/getGroup/";
   private apiUpdateGroupNameURL = "http://localhost:8080/bolas/api/group/update";
+  private apiAddMemberURL = "http://localhost:8080/bolas/api/group/addMember";
+  private apiExitGroupURL = "http://localhost:8080/bolas/api/group/exit";
 
   constructor(private http: HttpClient) { }
 
@@ -104,5 +106,30 @@ export class SocialService {
       name: newName
     }
     return this.http.post<Boolean>(this.apiUpdateGroupNameURL, body);
+  }
+
+  public addMember(newUser: string, groupId: string): Observable<Boolean> {
+    const session = LoginDTO.getSession();
+    const body = {
+      member: newUser,
+      group: groupId,
+      session: {
+        email: session.email,
+        password: session.password
+      }
+    }
+    return this.http.post<Boolean>(this.apiAddMemberURL, body);
+  }
+
+  public exitGroup(groupId: string): Observable<Boolean> {
+    const session = LoginDTO.getSession();
+    const body = {
+      group: groupId,
+      session: {
+        email: session.email,
+        password: session.password
+      }
+    }
+    return this.http.post<Boolean>(this.apiExitGroupURL, body);
   }
 }

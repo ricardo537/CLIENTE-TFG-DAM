@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { EventGroupDTO } from '@dto/eventGroupDTO';
 import { GroupResumeDTO } from '@dto/groupResumeDTO';
 import { UserResumeDTO } from '@dto/userResumeDTO';
@@ -28,7 +28,7 @@ export class GroupChatComponent {
   public changeName: boolean = false;
   public newName: string = '';
 
-  constructor (private route: ActivatedRoute, private eventService: EventService, private socialService: SocialService, private mediaService: MediaService) {
+  constructor (private route: ActivatedRoute, private eventService: EventService, private socialService: SocialService, private mediaService: MediaService, private router: Router) {
     this.route.paramMap.subscribe(params => {
           this.groupId = params.get('id') || '';
           this.socialService.getGroupData(this.groupId).subscribe({
@@ -97,6 +97,14 @@ export class GroupChatComponent {
     this.socialService.updateNameOfGroup(this.groupId, this.newName).subscribe({
       next: (response) => {
         window.location.reload();
+      }
+    })
+  }
+
+  public exit(): void {
+    this.socialService.exitGroup(this.groupId).subscribe({
+      next: (response) => {
+        this.router.navigate(['/bolas/dashboard/social/groups']);
       }
     })
   }
